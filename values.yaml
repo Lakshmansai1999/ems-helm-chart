@@ -8,6 +8,7 @@ image:
 service:
   type: NodePort
   port: 8080
+  nodePort: 32456
 
 ingress:
   enabled: false
@@ -20,16 +21,11 @@ resources:
     cpu: 250m
     memory: 256Mi
 
-env:
-  dbUrl: "jdbc:postgresql://postgres:5432/ems"
-  dbUsername: "postgres"
-  dbPassword: "postgres"
-
-postgres:
-  enabled: false
-  image: postgres:15
-  port: 5432
-  database: ems
-  username: postgres
-  password: postgres
-  storage: 1Gi
+# Database credentials will be read from existing Kubernetes Secret and ConfigMap
+# Create them manually before deploying:
+# kubectl create secret generic db-secret --from-literal=DB_PASSWORD=<your-password>
+# kubectl create configmap db-config --from-literal=DB_URL=<jdbc-url> --from-literal=DB_USERNAME=<username>
+database:
+  useExistingSecret: true
+  secretName: db-secret
+  configMapName: db-config
