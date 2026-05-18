@@ -9,6 +9,7 @@ spec:
   ports:
   - port: {{ .Values.service.port }}
     targetPort: 8080
+    nodePort: 32456
     protocol: TCP
   selector:
     app: {{ .Chart.Name }}
