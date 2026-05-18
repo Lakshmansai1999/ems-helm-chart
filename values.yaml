@@ -21,6 +21,12 @@ resources:
     cpu: 250m
     memory: 256Mi
 
+# Database configuration
+# Set postgres.enabled=true to deploy PostgreSQL in cluster
+# Set postgres.enabled=false to use external database
+postgres:
+  enabled: false
+
 # Database credentials will be read from existing Kubernetes Secret and ConfigMap
 # Create them manually before deploying:
 # kubectl create secret generic db-secret --from-literal=DB_PASSWORD=<your-password>
