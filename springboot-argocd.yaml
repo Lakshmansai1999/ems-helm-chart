@@ -9,7 +9,7 @@ spec:
   source:
     repoURL: https://github.com/Lakshmansai1999/ems-helm-chart.git
     targetRevision: master
-    path: springboot
+    path: .
 
   destination:
     server: https://kubernetes.default.svc
