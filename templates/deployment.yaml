@@ -24,17 +24,17 @@ spec:
         - name: DB_URL
           valueFrom:
             configMapKeyRef:
-              name: db-config
+              name: {{ .Values.database.configMapName }}
               key: DB_URL
         - name: DB_USERNAME
           valueFrom:
             configMapKeyRef:
-              name: db-config
+              name: {{ .Values.database.configMapName }}
               key: DB_USERNAME
         - name: DB_PASSWORD
           valueFrom:
             secretKeyRef:
-              name: db-secret
+              name: {{ .Values.database.secretName }}
               key: DB_PASSWORD
         resources:
           {{- toYaml .Values.resources | nindent 10 }}
