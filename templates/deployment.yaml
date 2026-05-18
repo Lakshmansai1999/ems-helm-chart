@@ -22,10 +22,19 @@ spec:
         - containerPort: 8080
         env:
         - name: DB_URL
-          value: {{ .Values.env.dbUrl }}
+          valueFrom:
+            configMapKeyRef:
+              name: db-config
+              key: DB_URL
         - name: DB_USERNAME
-          value: {{ .Values.env.dbUsername }}
+          valueFrom:
+            configMapKeyRef:
+              name: db-config
+              key: DB_USERNAME
         - name: DB_PASSWORD
-          value: {{ .Values.env.dbPassword }}
+          valueFrom:
+            secretKeyRef:
+              name: db-secret
+              key: DB_PASSWORD
         resources:
           {{- toYaml .Values.resources | nindent 10 }}
