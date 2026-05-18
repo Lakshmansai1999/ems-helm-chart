@@ -2,5 +2,5 @@ apiVersion: v2
 name: ems
 description: Employee Management System Helm Chart
 type: application
-version: 0.1.0
-appVersion: "0.0.1"
+version: 1.0.0
+appVersion: "1.0"
