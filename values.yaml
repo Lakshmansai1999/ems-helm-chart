@@ -1,0 +1,35 @@
+replicaCount: 1
+
+image:
+  repository: lakshmansai/springboot-app
+  pullPolicy: IfNotPresent
+  tag: "30"
+
+service:
+  type: ClusterIP
+  port: 8080
+
+ingress:
+  enabled: false
+
+resources:
+  limits:
+    cpu: 500m
+    memory: 512Mi
+  requests:
+    cpu: 250m
+    memory: 256Mi
+
+env:
+  dbUrl: "jdbc:postgresql://postgres:5432/ems"
+  dbUsername: "postgres"
+  dbPassword: "postgres"
+
+postgres:
+  enabled: true
+  image: postgres:15
+  port: 5432
+  database: ems
+  username: postgres
+  password: postgres
+  storage: 1Gi
